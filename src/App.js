@@ -8,7 +8,9 @@ import {
 } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Research from "./components/Research";
-import People from "./components/People";
+import People from "./pages/Members/People";
+import CurrentMembers from "./pages/Members/CurrentMembers";
+import Alumni from "./pages/Members/Alumni";
 import Publications from "./components/Publications";
 import News from "./components/News";
 import Contact from "./components/Contact";
@@ -39,6 +41,8 @@ function Layout() {
           <Route path="/" element={<HomePage />} />
           <Route path="/research" element={<Research />} />
           <Route path="/people" element={<People />} />
+          <Route path="/current-members" element={<CurrentMembers />} />
+          <Route path="/alumni" element={<Alumni />} />
           <Route path="/publications" element={<Publications />} />
           <Route path="/news" element={<News />} />
           <Route path="/contact" element={<Contact />} />
@@ -46,8 +50,21 @@ function Layout() {
         </Routes>
       </main>
 
-      {/* FOOTER visible only on home page */}
-      {location.pathname === "/" && (
+      {/* FOOTER visible on home and main site pages (supports nested/trailing paths) */}
+      {(() => {
+        const p = location.pathname;
+        const bases = [
+          "/",
+          "/research",
+          "/people",
+          "/publications",
+          "/news",
+          "/contact",
+          "/login",
+        ];
+        const match = bases.some((base) => p === base || p.startsWith(base + "/"));
+        return match;
+      })() && (
         <footer
           className="py-3 mt-auto text-light"
           style={{ backgroundColor: "#1d3557" }}
