@@ -8,9 +8,7 @@ import {
 } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Research from "./components/Research";
-import People from "./pages/Members/People";
-import CurrentMembers from "./pages/Members/CurrentMembers";
-import Alumni from "./pages/Members/Alumni";
+import People from "./components/People";
 import Publications from "./components/Publications";
 import News from "./components/News";
 import Contact from "./components/Contact";
@@ -41,8 +39,8 @@ function Layout() {
           <Route path="/" element={<HomePage />} />
           <Route path="/research" element={<Research />} />
           <Route path="/people" element={<People />} />
-          <Route path="/current-members" element={<CurrentMembers />} />
-          <Route path="/alumni" element={<Alumni />} />
+          <Route path="/current-members" element={<People />} />
+          <Route path="/alumni" element={<People />} />
           <Route path="/publications" element={<Publications />} />
           <Route path="/news" element={<News />} />
           <Route path="/contact" element={<Contact />} />
